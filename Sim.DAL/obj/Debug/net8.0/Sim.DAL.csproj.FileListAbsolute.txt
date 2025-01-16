@@ -1,0 +1,14 @@
+C:\Users\CLASSTIME\source\repos\FourthSim\Sim.DAL\bin\Debug\net8.0\Sim.DAL.deps.json
+C:\Users\CLASSTIME\source\repos\FourthSim\Sim.DAL\bin\Debug\net8.0\Sim.DAL.runtimeconfig.json
+C:\Users\CLASSTIME\source\repos\FourthSim\Sim.DAL\bin\Debug\net8.0\Sim.DAL.dll
+C:\Users\CLASSTIME\source\repos\FourthSim\Sim.DAL\bin\Debug\net8.0\Sim.DAL.pdb
+C:\Users\CLASSTIME\source\repos\FourthSim\Sim.DAL\obj\Debug\net8.0\Sim.DAL.csproj.AssemblyReference.cache
+C:\Users\CLASSTIME\source\repos\FourthSim\Sim.DAL\obj\Debug\net8.0\Sim.DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\CLASSTIME\source\repos\FourthSim\Sim.DAL\obj\Debug\net8.0\Sim.DAL.AssemblyInfoInputs.cache
+C:\Users\CLASSTIME\source\repos\FourthSim\Sim.DAL\obj\Debug\net8.0\Sim.DAL.AssemblyInfo.cs
+C:\Users\CLASSTIME\source\repos\FourthSim\Sim.DAL\obj\Debug\net8.0\Sim.DAL.csproj.CoreCompileInputs.cache
+C:\Users\CLASSTIME\source\repos\FourthSim\Sim.DAL\obj\Debug\net8.0\Sim.DAL.dll
+C:\Users\CLASSTIME\source\repos\FourthSim\Sim.DAL\obj\Debug\net8.0\refint\Sim.DAL.dll
+C:\Users\CLASSTIME\source\repos\FourthSim\Sim.DAL\obj\Debug\net8.0\Sim.DAL.pdb
+C:\Users\CLASSTIME\source\repos\FourthSim\Sim.DAL\obj\Debug\net8.0\Sim.DAL.genruntimeconfig.cache
+C:\Users\CLASSTIME\source\repos\FourthSim\Sim.DAL\obj\Debug\net8.0\ref\Sim.DAL.dll

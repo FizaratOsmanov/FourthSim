@@ -1,0 +1,15 @@
+C:\Users\CLASSTIME\source\repos\FourthSim\Sim.BL\bin\Debug\net8.0\Sim.BL.deps.json
+C:\Users\CLASSTIME\source\repos\FourthSim\Sim.BL\bin\Debug\net8.0\Sim.BL.dll
+C:\Users\CLASSTIME\source\repos\FourthSim\Sim.BL\bin\Debug\net8.0\Sim.BL.pdb
+C:\Users\CLASSTIME\source\repos\FourthSim\Sim.BL\bin\Debug\net8.0\Sim.DAL.dll
+C:\Users\CLASSTIME\source\repos\FourthSim\Sim.BL\bin\Debug\net8.0\Sim.DAL.pdb
+C:\Users\CLASSTIME\source\repos\FourthSim\Sim.BL\obj\Debug\net8.0\Sim.BL.csproj.AssemblyReference.cache
+C:\Users\CLASSTIME\source\repos\FourthSim\Sim.BL\obj\Debug\net8.0\Sim.BL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\CLASSTIME\source\repos\FourthSim\Sim.BL\obj\Debug\net8.0\Sim.BL.AssemblyInfoInputs.cache
+C:\Users\CLASSTIME\source\repos\FourthSim\Sim.BL\obj\Debug\net8.0\Sim.BL.AssemblyInfo.cs
+C:\Users\CLASSTIME\source\repos\FourthSim\Sim.BL\obj\Debug\net8.0\Sim.BL.csproj.CoreCompileInputs.cache
+C:\Users\CLASSTIME\source\repos\FourthSim\Sim.BL\obj\Debug\net8.0\Sim.BL.csproj.Up2Date
+C:\Users\CLASSTIME\source\repos\FourthSim\Sim.BL\obj\Debug\net8.0\Sim.BL.dll
+C:\Users\CLASSTIME\source\repos\FourthSim\Sim.BL\obj\Debug\net8.0\refint\Sim.BL.dll
+C:\Users\CLASSTIME\source\repos\FourthSim\Sim.BL\obj\Debug\net8.0\Sim.BL.pdb
+C:\Users\CLASSTIME\source\repos\FourthSim\Sim.BL\obj\Debug\net8.0\ref\Sim.BL.dll
