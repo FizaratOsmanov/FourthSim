@@ -1,8 +1,15 @@
-﻿using Sim.BL.DTOs.DepartmentDTOs;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Hosting;
+using Sim.BL.DTOs.DepartmentDTOs;
+using Sim.BL.DTOs.DoctorDTOs;
 using Sim.BL.Services.Abstractions;
+using Sim.DAL.Models;
+using Sim.DAL.Repositories.Abstractions;
+using Sim.DAL.Repositories.Implementations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,29 +17,59 @@ namespace Sim.BL.Services.Implementations
 {
     public class DepartmentService : IDepartmentService
     {
-        public Task CreateDepartmentAsync(DepartmentPostDTO dto)
+        private readonly IDepartmentRepository _departmentRepository;
+        private readonly IMapper _mapper;
+        public DepartmentService(IDepartmentRepository departmentRepository, IMapper mapper)
         {
-            throw new NotImplementedException();
+            _departmentRepository = departmentRepository;
+            _mapper = mapper;
+        }
+        public async Task CreateDepartmentAsync(DepartmentPostDTO dto)
+        {
+            Department department=_mapper.Map<Department>(dto);
+            await _departmentRepository.AddAsync(department);
+            int result = await _departmentRepository.SaveChangesAsync();
+            if (result == 0)
+            {
+                throw new Exception("Cannot add department.");
+            }
         }
 
-        public Task DeleteDepartment(int id)
+        public async Task DeleteDepartment(int id)
         {
-            throw new NotImplementedException();
+            Department doctor = await _departmentRepository.GetByIdAsync(id);
+            if (doctor == null)
+            {
+                throw new Exception("Department is not found");
+            }
+            _departmentRepository.Delete(doctor);
+
+            int result = await _departmentRepository.SaveChangesAsync();
+            if (result == 0)
+            {
+                throw new Exception("Something went wrong");
+            }
         }
 
-        public Task<ICollection<DepartmentGetDTO>> GetAllDepartmentAsync()
+        public async Task<ICollection<DepartmentGetDTO>> GetAllDepartmentAsync()
         {
-            throw new NotImplementedException();
+            var department = await _departmentRepository.GetAllAsync();
+
+            return _mapper.Map<ICollection<DepartmentGetDTO>>(department);
         }
 
-        public Task<DepartmentGetDTO> GetDepartmentByIdAsync(int Id)
+        public async Task<Department> GetDepartmentByIdAsync(int Id)
         {
-            throw new NotImplementedException();
+            Department department = await _departmentRepository.GetByIdAsync(Id);
+            return department;
         }
 
-        public Task UpdateDepartment(DepartmentPutDTO dto)
+        public async Task UpdateDepartment(DepartmentPutDTO dto)
         {
-            throw new NotImplementedException();
+            Department department = await _departmentRepository.GetByConditionAsync(d => d.Id == dto.Id);
+
+            _departmentRepository.Update(department);
+            int result = await _departmentRepository.SaveChangesAsync();
         }
     }
 }

@@ -4,11 +4,6 @@ using Sim.BL.DTOs.DoctorDTOs;
 using Sim.BL.Services.Abstractions;
 using Sim.DAL.Models;
 using Sim.DAL.Repositories.Abstractions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Sim.BL.Services.Implementations
 {
@@ -27,67 +22,114 @@ namespace Sim.BL.Services.Implementations
 
         public async Task CreateDoctorAsync(DoctorPostDTO dto)
         {
-            Doctor doctor = _mapper.Map<Doctor>(dto);
-
             string rootPath = _webHostEnvironment.WebRootPath;
-            string fileName = dto.Image.FileName;
-            string folderPath = rootPath + "/UPLOAD/NEWs/";
-            string filePath = Path.Combine(folderPath, fileName);
-
-            bool exists = Directory.Exists(folderPath);
-
-            if (!exists)
+            string folder = rootPath + "/Uploads/Doctors/";
+            if (!Directory.Exists(folder))
             {
-                Directory.CreateDirectory(folderPath);
+                Directory.CreateDirectory(folder);
             }
+            string fileName = dto.Image.FileName;
 
-            string[] allowedExtensions = [".png", ".jpg", ".jpeg"];
+            string[] extensions = [".jpg", ".png", "jpeg"];
             bool isAllowed = false;
-            foreach (string extention in allowedExtensions)
+            foreach (var extension in extensions)
             {
-                if (Path.GetExtension(fileName) == extention)
+                if (Path.GetExtension(fileName) == extension)
                 {
                     isAllowed = true;
                     break;
                 }
             }
+
             if (!isAllowed)
             {
-                throw new Exception("File not supported");
+                throw new Exception("File is not supported.");
             }
 
-            using (var stream = new FileStream(filePath, FileMode.Create))
+            string filePath = folder + fileName;
+
+            using (FileStream stream = new FileStream(filePath, FileMode.Create))
             {
                 await dto.Image.CopyToAsync(stream);
             }
-            dto.Image = fileName;
+
+            Doctor doctor = _mapper.Map<Doctor>(dto);
+            doctor.ImgPath = fileName;
 
             await _doctorRepository.AddAsync(doctor);
+
             int result = await _doctorRepository.SaveChangesAsync();
             if (result == 0)
             {
-                throw new Exception("Couldnt added News.");
+                throw new OperationCanceledException("Couldn't create doctor.");
             }
         }
 
-        public Task DeleteDoctor(int id)
+        public async Task DeleteDoctor(int id)
         {
-            throw new NotImplementedException();
+            Doctor doctor=await _doctorRepository.GetByIdAsync(id);
+            if (doctor == null)
+            {
+                throw new Exception("Doctor is not found");
+            }
+
+            _doctorRepository.Delete(doctor);
+
+            int result=await _doctorRepository.SaveChangesAsync();
+            if(result == 0)
+            {
+                throw new Exception("Something went wrong");
+            }
         }
 
-        public Task<ICollection<DoctorGetDTO>> GetAllDoctorAsync()
+        public async Task<ICollection<DoctorGetDTO>> GetAllDoctorAsync()
         {
-            throw new NotImplementedException();
+            var news = await _doctorRepository.GetAllAsync();
+
+            return _mapper.Map<ICollection<DoctorGetDTO>>(news);
         }
 
-        public Task<DoctorGetDTO> GetDoctorByIdAsync(int Id)
+        public async Task<DoctorGetDTO> GetDoctorByIdAsync(int Id)
         {
-            throw new NotImplementedException();
+            Doctor doctor = await _doctorRepository.GetByIdAsync(Id);
+            DoctorGetDTO dto = _mapper.Map<DoctorGetDTO>(doctor);
+            return dto;
         }
 
-        public Task UpdateDoctor(DoctorPutDTO dto)
+        public async Task UpdateDoctor(DoctorPutDTO dto)
         {
-            throw new NotImplementedException();
+            Doctor doctor = await _doctorRepository.GetByConditionAsync(d => d.Id == dto.Id);
+            if (doctor is null)
+            {
+                throw new Exception("Couldn't find doctor.");
+            }
+
+            string rootPath = _webHostEnvironment.WebRootPath;
+            string folder = Path.Combine(rootPath, "UPLOAD", "Doctors");
+            string fileName = dto.Image.FileName;
+            string[] extensions = { ".jpg", ".png", ".jpeg" };
+            if (!extensions.Contains(Path.GetExtension(fileName).ToLower()))
+            {
+                throw new Exception("File is not supported.");
+            }
+            if (!Directory.Exists(folder))
+            {
+                Directory.CreateDirectory(folder);
+            }
+            string filePath = Path.Combine(folder, fileName);
+
+            using (FileStream stream = new FileStream(filePath, FileMode.Create))
+            {
+                await dto.Image.CopyToAsync(stream);
+            }
+
+            doctor.ImgPath = "/UPLOAD/Doctors/" + fileName; 
+            _doctorRepository.Update(doctor);
+            int result = await _doctorRepository.SaveChangesAsync();
+            if (result == 0)
+            {
+                throw new Exception("Couldn't update doctor.");
+            }
         }
     }
 }

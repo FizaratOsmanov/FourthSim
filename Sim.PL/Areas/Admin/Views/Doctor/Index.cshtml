@@ -1,12 +1,13 @@
-﻿<!-- Begin Page Content -->
+﻿@model ICollection<DoctorGetDTO>
+<!-- Begin Page Content -->
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 text-gray-800 mb-3">News</h1>
+    <h1 class="h3 text-gray-800 mb-3">Doctor</h1>
 
     <!-- Create Button -->
     <div class="mb-4">
-        <a asp-action="Create" asp-controller="News" asp-area="Admin" class="btn btn-success">
+        <a asp-action="Create" asp-controller="Doctor" asp-area="Admin" class="btn btn-success">
             <i class="fas fa-plus"></i> Create
         </a>
     </div>
@@ -14,7 +15,7 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">News Table</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Doctor Table</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -24,27 +25,27 @@
                             <th>Id</th>
                             <th>Image</th>
 
-                            <th>Title</th>
-                            <th>CategoryId</th>
+                            <th>Name</th>
+                            <th>DepartmentId</th>
                             <th class="text-center">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (NewsGetDTO item in Model)
+                        @foreach (DoctorGetDTO item in Model)
                         {
                             <tr>
                                 <td>@item.Id</td>
                                 <td class="text-center">
-                                    <img class="img-thumbnail rounded" width="50" src="~/UPLOAD/NEWs/@item.ImgPath" alt="Image of @item.Title" />
+                                    <img class="img-thumbnail rounded" width="50" src="~/UPLOAD/NEWs/@item.ImgPath" alt="Image of @item.Name" />
                                 </td>
 
-                                <td>@item.Title</td>
-                                <td>@item.CategoryId</td>
+                                <td>@item.Name</td>
+                                <td>@item.DepartmentId</td>
                                 <td class="text-center">
-                                    <a asp-controller="News" asp-action="Update" asp-area="Admin" asp-route-id="@item.Id" class="btn btn-warning btn-sm mx-1">
+                                    <a asp-controller="Doctor" asp-action="Update" asp-area="Admin" asp-route-id="@item.Id" class="btn btn-warning btn-sm mx-1">
                                         <i class="fas fa-edit"></i> Update
                                     </a>
-                                    <a asp-controller="News" asp-action="Delete" asp-area="Admin" asp-route-id="@item.Id" class="btn btn-danger btn-sm mx-1">
+                                    <a asp-controller="Doctor" asp-action="Delete" asp-area="Admin" asp-route-id="@item.Id" class="btn btn-danger btn-sm mx-1">
                                         <i class="fas fa-trash"></i> Delete
                                     </a>
                                 </td>

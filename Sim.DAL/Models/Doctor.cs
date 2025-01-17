@@ -10,6 +10,7 @@ namespace Sim.DAL.Models
     {
 
         public string ImgPath { get; set; }
+
         public string Name { get; set; }
 
         public int? DepartmentId {  get; set; }

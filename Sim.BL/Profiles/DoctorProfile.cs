@@ -16,6 +16,7 @@ namespace Sim.BL.Profiles
             CreateMap<DoctorGetDTO,Doctor>().ReverseMap();
             CreateMap<DoctorPostDTO,Doctor>().ReverseMap();
             CreateMap<DoctorPutDTO,Doctor>().ReverseMap();
+            CreateMap<DoctorGetDTO, DoctorPutDTO>().ReverseMap();
         }
     }
 }
